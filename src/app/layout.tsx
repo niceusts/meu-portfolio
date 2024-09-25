@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import Link from 'next/link';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -29,7 +30,41 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="min-h-screen flex flex-col">
+          {/* Header */}
+          <header className="text-white p-4">
+            <nav className="container mx-auto flex justify-around items-center">
+              <h1 className="text-2xl font-bold">
+                Meu<a className="text-blue-500">Portfólio</a>
+              </h1>
+              <ul className="flex space-x-4">
+                <li>
+                  <Link href="#projetos" className="hover:text-blue-500">
+                    Projetos
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#habilidades" className="hover:text-blue-500">
+                    Habilidades
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#contato" className="hover:text-blue-500">
+                    Contato
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </header>
+
+          {/* Main Content */}
+          <main className="flex-grow container mx-auto p-4">{children}</main>
+
+          {/* Footer */}
+          <footer className="bg-gray-900 text-white text-center p-4">
+            <p>© 2024 Niceu Biriba. Todos os direitos reservados.</p>
+          </footer>
+        </div>
       </body>
     </html>
   );

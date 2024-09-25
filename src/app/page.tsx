@@ -1,9 +1,14 @@
 import React from 'react';
+import HeroSection from './components/HeroSection';
+import ProjectSection from './components/ProjectSection';
+import HabilitySection from './components/HabilitySection';
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center">
-      <h1>Teste</h1>
-    </main>
+    <div>
+      <HeroSection />
+      <ProjectSection />
+      <HabilitySection />
+    </div>
   );
 }
