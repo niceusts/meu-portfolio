@@ -23,7 +23,7 @@ const ContactSection = () => {
               href="https://www.linkedin.com/in/niceu-santos-biriba-1055301b2/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-2"
+              className="flex items-center space-x-2 border p-2 rounded hover:bg-blue-800"
             >
               <Facebook size={24} />
               <span>LinkedIn</span>
@@ -32,7 +32,7 @@ const ContactSection = () => {
               href="https://github.com/niceusts"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-2"
+              className="flex items-center space-x-2 border p-2 rounded hover:bg-purple-800"
             >
               <Github size={24} />
               <span>GitHub</span>
@@ -90,7 +90,7 @@ const ContactSection = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-purple-600 hover:bg-purple-800 text-white py-2 px-4 rounded"
+              className="w-full bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded"
             >
               Enviar
             </button>

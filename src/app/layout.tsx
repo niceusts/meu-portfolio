@@ -39,17 +39,25 @@ export default function RootLayout({
               </h1>
               <ul className="flex space-x-4">
                 <li>
-                  <Link href="#projetos" className="hover:text-blue-500">
+                  <Link href="/" className="hover:text-blue-500">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/pages/projetos" className="hover:text-blue-500">
                     Projetos
                   </Link>
                 </li>
                 <li>
-                  <Link href="#habilidades" className="hover:text-blue-500">
+                  <Link
+                    href="/pages/habilidades"
+                    className="hover:text-blue-500"
+                  >
                     Habilidades
                   </Link>
                 </li>
                 <li>
-                  <Link href="#curriculo" className="hover:text-blue-500">
+                  <Link href="/pages/curriculo" className="hover:text-blue-500">
                     Curriculo
                   </Link>
                 </li>

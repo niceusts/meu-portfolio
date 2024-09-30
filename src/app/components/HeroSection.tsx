@@ -13,13 +13,17 @@ const HeroSection = () => {
         <p className="text-lg max-w-md mb-6">
           Feliz em ter você em minha página. Estou aqui para mostrar um pouco
           sobre a minha evolução na área de desenvolvimento web. Atualmente
-          estou cursando Sistemas de Informação. E faço alguns cursos externos
-          focados em front-end.
+          estou cursando Sistemas de Informação. Fiz alguns cursos externos
+          focados em front-end, porém fiz outros voltados para o backend,
+          portanto não me limito somente ao frontend.
         </p>
         <div className="flex space-x-4 mb-6">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">
-            Contact me
-          </button>
+          <a
+            href="page/curriculo"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg"
+          >
+            Currículo
+          </a>
         </div>
       </div>
 
