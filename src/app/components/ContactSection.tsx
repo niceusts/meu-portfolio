@@ -5,8 +5,8 @@ import { Facebook, Github } from 'lucide-react';
 const ContactSection = () => {
   return (
     <section className="py-12">
-      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between">
-        <div className="w-full lg:w-1/2 text-white flex flex-col items-center lg:items-start mb-8 lg:mb-0">
+      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center">
+        <div className="text-white flex-col items-right lg:items-end mb-8 lg:mb-0">
           <div className="mb-6 w-96">
             <Image
               src="/Contact.png"
@@ -18,7 +18,7 @@ const ContactSection = () => {
           </div>
 
           {/* Links para LinkedIn e GitHub */}
-          <div className="flex space-x-4 text-white">
+          <div className="flex space-x-4 text-white items-end justify-center">
             <a
               href="https://www.linkedin.com/in/niceu-santos-biriba-1055301b2/"
               target="_blank"
@@ -41,7 +41,7 @@ const ContactSection = () => {
         </div>
 
         {/* Formulário de Contato */}
-        <div className="w-full lg:w-1/2 bg-gray-900 p-8 rounded-lg text-white">
+        <div className="w-full lg:w-2/5 bg-gray-900 p-8 rounded-lg text-white">
           <h3 className="text-lg font-semibold mb-6 text-center">
             Deixe seu recado.
           </h3>

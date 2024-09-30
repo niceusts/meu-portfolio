@@ -49,6 +49,11 @@ export default function RootLayout({
                   </Link>
                 </li>
                 <li>
+                  <Link href="#curriculo" className="hover:text-blue-500">
+                    Curriculo
+                  </Link>
+                </li>
+                <li>
                   <Link href="#contato" className="hover:text-blue-500">
                     Contato
                   </Link>
@@ -61,7 +66,7 @@ export default function RootLayout({
           <main className="flex-grow container mx-auto p-4">{children}</main>
 
           {/* Footer */}
-          <footer className="bg-gray-900 text-white text-center p-4">
+          <footer className="bg-blue-500 text-white text-center p-2">
             <p>© 2024 Niceu Biriba. Todos os direitos reservados.</p>
           </footer>
         </div>
