@@ -16,6 +16,8 @@ const HabilitySection = () => {
             <div
               key={skill.id}
               className="bg-gray-900 text-white p-4 rounded-lg"
+              data-aos="flip-left"
+              data-aos-duration="1000"
             >
               <h4 className={`text-lg font-bold `}>{skill.title}</h4>
               <p className="text-sm mt-2">

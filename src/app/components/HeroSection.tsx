@@ -3,7 +3,10 @@ import Image from 'next/image';
 
 const HeroSection = () => {
   return (
-    <section className="pt-16 flex sm:flex-row flex-col-reverse justify-evenly items-center">
+    <section
+      className="pt-16 flex sm:flex-row flex-col-reverse justify-evenly items-center"
+      data-aos="fade-up"
+    >
       <div className="flex flex-col">
         <div className="sm:text-left text-center">
           <h1 className="text-5xl font-bold mb-4">

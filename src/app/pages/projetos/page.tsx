@@ -15,6 +15,8 @@ const Projetos = () => {
           <div
             key={project.id}
             className="bg-gray-800 text-white p-4 rounded-lg flex flex-col justify-between"
+            data-aos="flip-left"
+            data-aos-duration="1000"
           >
             <div>
               <Image

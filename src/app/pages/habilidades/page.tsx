@@ -15,6 +15,8 @@ const Habilidades = () => {
             <div
               key={skill.id}
               className="bg-gray-900 text-white p-4 rounded-lg"
+              data-aos="flip-left"
+              data-aos-duration="1000"
             >
               <Image
                 src={skill.logo}
@@ -48,6 +50,8 @@ const Habilidades = () => {
             <div
               key={skill.id}
               className="bg-gray-900 text-white p-4 rounded-lg"
+              data-aos="flip-left"
+              data-aos-duration="1000"
             >
               <Image
                 src={skill.logo}
@@ -81,6 +85,8 @@ const Habilidades = () => {
             <div
               key={skill.id}
               className="bg-gray-900 text-white p-4 rounded-lg"
+              data-aos="flip-left"
+              data-aos-duration="1000"
             >
               <Image
                 src={skill.logo}

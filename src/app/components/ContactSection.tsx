@@ -1,13 +1,32 @@
 import React from 'react';
 import Image from 'next/image';
 import { Facebook, Github } from 'lucide-react';
+import {
+  EmailOutlined,
+  EmailRounded,
+  EmailSharp,
+  WhatsApp,
+} from '@mui/icons-material';
 
 const ContactSection = () => {
+  const whatsappNumber = '5579996084047';
+  const message = 'Olá! Gostaria de mais informações sobre seu currículo.';
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+  const email = 'niceusantos1365@gmail.com';
+  const subject = 'Informações sobre seu currículo';
+  const body = 'Olá! Gostaria de mais informações sobre seu currículo.';
+
+  const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
   return (
-    <section className="py-12">
+    <section className="py-12" data-aos="fade-up">
       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center">
-        <div className="text-white flex-col items-right lg:items-end mb-8 lg:mb-0">
-          <div className="mb-6 w-96">
+        <div className="text-white flex-col items-right lg:items-end mb-8 lg:mb-0"></div>
+
+        {/* Formulário de Contato */}
+        <div className="w-full lg:w-2/5 bg-gray-900 p-8 rounded-lg text-white">
+          <div className="">
             <Image
               src="/Contact.png"
               alt="Ilustração"
@@ -16,7 +35,9 @@ const ContactSection = () => {
               height={50}
             />
           </div>
-
+          <h3 className="text-lg font-semibold mb-6 text-center">
+            Entre em contato
+          </h3>
           {/* Links para LinkedIn e GitHub */}
           <div className="flex space-x-4 text-white items-end justify-center">
             <a
@@ -37,64 +58,23 @@ const ContactSection = () => {
               <Github size={24} />
               <span>GitHub</span>
             </a>
-          </div>
-        </div>
-
-        {/* Formulário de Contato */}
-        <div className="w-full lg:w-2/5 bg-gray-900 p-8 rounded-lg text-white">
-          <h3 className="text-lg font-semibold mb-6 text-center">
-            Deixe seu recado.
-          </h3>
-
-          <form>
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-sm mb-1">
-                Nome:
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="w-full p-2 border border-gray-600 rounded bg-black text-white"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-sm mb-1">
-                Email:
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="w-full p-2 border border-gray-600 rounded bg-black text-white"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="phone" className="block text-sm mb-1">
-                Telefone:
-              </label>
-              <input
-                type="text"
-                id="phone"
-                className="w-full p-2 border border-gray-600 rounded bg-black text-white"
-                placeholder="opcional"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="message" className="block text-sm mb-1">
-                Mensagem:
-              </label>
-              <textarea
-                id="message"
-                rows={4}
-                className="w-full p-2 border border-gray-600 rounded bg-black text-white"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-800 text-white py-2 px-4 rounded"
+            <a
+              href={whatsappLink}
+              target="_blank" // Abre em uma nova aba
+              rel="noopener noreferrer" // Segurança ao abrir nova aba
+              className="flex items-center space-x-2 border p-2 rounded hover:bg-green-800"
             >
-              Enviar
-            </button>
-          </form>
+              <WhatsApp />
+              <span>Whatsapp</span>
+            </a>
+            <a
+              href={mailtoLink}
+              className="flex items-center space-x-2 border p-2 rounded hover:bg-red-800"
+            >
+              <EmailOutlined />
+              <span>E-mail</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
