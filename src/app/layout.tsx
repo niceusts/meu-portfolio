@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import Link from 'next/link';
+import Navbar from '@/app/components/navbar'; // Importa o componente de navegação
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -32,47 +32,9 @@ export default function RootLayout({
       >
         <div className="min-h-screen flex flex-col">
           {/* Header */}
-          <header className="text-white p-4">
-            <nav className="container mx-auto flex justify-around items-center">
-              <h1 className="text-2xl font-bold">
-                Meu<a className="text-blue-500">Portfólio</a>
-              </h1>
-              <ul className="flex space-x-4">
-                <li>
-                  <Link href="/" className="hover:text-blue-500">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/pages/projetos" className="hover:text-blue-500">
-                    Projetos
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/pages/habilidades"
-                    className="hover:text-blue-500"
-                  >
-                    Habilidades
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/pages/curriculo" className="hover:text-blue-500">
-                    Curriculo
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#contato" className="hover:text-blue-500">
-                    Contato
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </header>
-
+          <Navbar /> {/* Usa o componente Navbar */}
           {/* Main Content */}
           <main className="flex-grow container mx-auto p-4">{children}</main>
-
           {/* Footer */}
           <footer className="bg-blue-500 text-white text-center p-2">
             <p>© 2024 Niceu Biriba. Todos os direitos reservados.</p>

@@ -39,6 +39,8 @@ const Projetos = () => {
             </div>
             <div className="">
               <a
+                target="_blank"
+                rel="noopener noreferrer"
                 href={project.link}
                 className="block mt-6 text-center bg-blue-600 hover:bg-blue-500 text-white py-2 rounded"
               >

@@ -20,7 +20,7 @@ const ProjectSection = () => {
                 src={project.imageUrl}
                 alt={project.title}
                 className="rounded-t-lg w-full h-48 object-cover"
-                width={500}
+                width={200}
                 height={192}
               />
               <h2 className="text-xl font-bold mt-4">{project.title}</h2>
@@ -38,8 +38,10 @@ const ProjectSection = () => {
             </div>
             <div className="">
               <a
+                target="_blank"
                 href={project.link}
                 className="block mt-6 text-center bg-blue-600 hover:bg-blue-500 text-white py-2 rounded"
+                rel="noopener noreferrer"
               >
                 Acesse o site
               </a>

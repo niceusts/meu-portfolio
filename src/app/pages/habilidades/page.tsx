@@ -24,7 +24,17 @@ const Habilidades = () => {
                 className="h-8 w-8 mb-2"
               />
               <h3 className="text-lg font-bold">{skill.title}</h3>
-              <p>Nível de conhecimento: {skill.knowledgeLevel}</p>
+              <div className="bg-blue-950">
+                <p
+                  className="text-xs flex justify-center items-center text-white py-2 rounded-sm mt-1 bg-color-"
+                  style={{
+                    backgroundColor: skill.bgColor,
+                    width: skill.percentage,
+                  }}
+                >
+                  Nível de conhecimento: {skill.knowledgeLevel}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -47,7 +57,17 @@ const Habilidades = () => {
                 height={32}
               />
               <h3 className="text-lg font-bold">{skill.title}</h3>
-              <p>Nível de conhecimento: {skill.knowledgeLevel}</p>
+              <div className="bg-blue-950">
+                <p
+                  className="text-xs flex justify-center items-center text-white py-2 rounded-sm mt-1"
+                  style={{
+                    backgroundColor: skill.bgColor,
+                    width: skill.percentage,
+                  }}
+                >
+                  Nível de conhecimento: {skill.knowledgeLevel}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -70,7 +90,17 @@ const Habilidades = () => {
                 className="h-8 w-8 mb-2"
               />
               <h3 className="text-lg font-bold">{skill.title}</h3>
-              <p>Nível de conhecimento: {skill.knowledgeLevel}</p>
+              <div className="bg-blue-950">
+                <p
+                  className="text-xs flex justify-center items-center text-white py-2 rounded-sm mt-1"
+                  style={{
+                    backgroundColor: skill.bgColor,
+                    width: skill.percentage,
+                  }}
+                >
+                  Nível de conhecimento: {skill.knowledgeLevel}
+                </p>
+              </div>
             </div>
           ))}
         </div>
