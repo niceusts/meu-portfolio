@@ -4,8 +4,11 @@ import Image from 'next/image';
 
 const Habilidades = () => {
   return (
-    <div className="py-12">
-      <h1 className="text-2xl font-bold text-center mb-8">Habilidades</h1>
+    <div className="py-6">
+      <h3 className="text-3xl font-bold text-center mt-16 mb-8">
+        <span className="text-blue-600">[</span> Habilidades{' '}
+        <span className="text-blue-600">]</span>
+      </h3>
 
       {/* Seção Frontend */}
       <div className="mb-8">
