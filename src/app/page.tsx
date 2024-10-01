@@ -5,6 +5,7 @@ import HeroSection from './components/HeroSection';
 import ProjectSection from './components/ProjectSection';
 import HabilitySection from './components/HabilitySection';
 import ContactSection from './components/ContactSection';
+import GitHub from './components/GitHub';
 import AOS from 'aos'; // Importar AOS
 import 'aos/dist/aos.css'; // Importar os estilos AOS
 
@@ -18,6 +19,7 @@ export default function Home() {
       <HeroSection />
       <ProjectSection />
       <HabilitySection />
+      <GitHub />
       <ContactSection />
     </div>
   );

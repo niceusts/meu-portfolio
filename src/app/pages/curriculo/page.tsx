@@ -6,15 +6,16 @@ const CurriculumPage = () => {
   return (
     <div className="container mx-auto p-6 bg-gray-100 min-h-screen">
       {/* Header */}
-      <a
-        href="/curriculo.pdf" // caminho para o arquivo PDF na pasta 'public'
-        download // Isso vai fazer o arquivo ser baixado em vez de aberto
-        className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-sm"
-      >
-        BAIXAR CV
-      </a>
+
       <div className="text-center mb-12">
-        <h1 className="text-5xl font-extrabold text-gray-800 mb-2">
+        <a
+          href="/curriculo.pdf" // caminho para o arquivo PDF na pasta 'public'
+          download // Isso vai fazer o arquivo ser baixado em vez de aberto
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-sm"
+        >
+          BAIXAR CV
+        </a>
+        <h1 className="text-5xl font-extrabold text-gray-800 mb-2 mt-8">
           NICEU SANTOS BIRIBA
         </h1>
         <h2 className="text-2xl text-blue-600 font-semibold mb-4">

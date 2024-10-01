@@ -17,10 +17,11 @@ export default function Navbar() {
   };
 
   return (
+
     <header className="text-white p-4 bg-gray-900">
       <nav className="container mx-auto flex justify-between lg:justify-around items-center">
         <h1 className="text-2xl font-bold">
-          Meu<span className="text-blue-500">Portfólio</span>
+          Meu<a href='/' className="text-blue-500">Portfólio</a>
         </h1>
 
         {/* Botão para abrir o menu em telas pequenas */}
@@ -70,7 +71,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="#contato" className="hover:text-blue-500">
+            <Link href="/pages/contato" className="hover:text-blue-500" scroll={true}>
               Contato
             </Link>
           </li>
@@ -126,9 +127,10 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="#contato"
+              href=""
               className="hover:text-blue-500"
               onClick={handleCloseMenu}
+              scroll={false}
             >
               Contato
             </Link>
