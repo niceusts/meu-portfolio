@@ -20,7 +20,7 @@ const ContactSection = () => {
         <div className="text-white flex-col items-right lg:items-end mb-8 lg:mb-0"></div>
 
         {/* Formulário de Contato */}
-        <div className="w-full lg:w-2/5 bg-gray-900 p-8 rounded-lg text-white">
+        <div className="w-full lg:w-2/5 bg-gray-900 p-8 rounded-lg text-white shadow-content">
           <div className="">
             <Image
               src="/Contact.png"

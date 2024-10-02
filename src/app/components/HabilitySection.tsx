@@ -15,7 +15,7 @@ const HabilitySection = () => {
           {skills.map((skill) => (
             <div
               key={skill.id}
-              className="bg-gray-900 text-white p-4 rounded-lg"
+              className="bg-gray-800 text-white p-4 rounded-lg shadow-content"
               data-aos="flip-left"
               data-aos-duration="1000"
             >

@@ -12,7 +12,7 @@ const GitHubProjetos = () => {
         {githubProjects.slice(0, 4).map((project) => (
           <div
             key={project.id}
-            className="bg-gray-800 text-white p-4 rounded-lg flex flex-col justify-between"
+            className="bg-gray-800 text-white p-4 rounded-lg flex flex-col justify-between shadow-content"
             data-aos="flip-left"
             data-aos-duration="1000"
           >
