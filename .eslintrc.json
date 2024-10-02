@@ -1,3 +1,29 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "parser": "@typescript-eslint/parser", // Define o parser do TypeScript
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "prettier"], // Plugins que você está usando
+  "extends": [
+    "next/core-web-vitals", // Extensão para Next.js
+    "eslint:recommended", // Regras recomendadas do ESLint
+    "plugin:@typescript-eslint/recommended", // Regras recomendadas para TypeScript
+    "plugin:react/recommended", // Regras recomendadas para React
+    "plugin:prettier/recommended" // Integrar o Prettier com ESLint
+  ],
+  "root": true, // Marca este arquivo como o arquivo de configuração raiz
+  "env": {
+    "node": true, // Ambiente Node
+    "jest": true // Ambiente Jest para testes
+  },
+  "ignorePatterns": [".eslintrc.js", "docs"], // Arquivos e pastas a serem ignorados pelo ESLint
+  "rules": {
+    "@typescript-eslint/interface-name-prefix": "off", // Regras específicas do TypeScript
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/react-in-jsx-scope": "off" // Necessário apenas no React < 17
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Detecta automaticamente a versão do React
+    }
+  }
 }
