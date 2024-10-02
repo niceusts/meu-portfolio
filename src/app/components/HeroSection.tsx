@@ -35,15 +35,23 @@ const HeroSection = () => {
       </div>
 
       <div>
-        <div className="w-45 h-45 rounded-full border-8 border-blue-600 mb-6 object-cover p-2 ">
+        <div className="image-container mb-6">
           <Image
-            src="/niceu.png"
-            alt="Niceu Photo"
-            width={160}
-            height={160}
-            className="rounded-full border-blue-600 object-cover"
+            src="/perfil.JPG"
+            alt="Profile Image"
+            width={260}
+            height={260}
           />
         </div>
+        {/* <div className="w-45 h-45 rounded-full border-8 border-blue-600 mb-6 object-cover  p-2 ">
+          <Image
+            src="/perfil.JPG"
+            alt="Niceu Photo"
+            width={260}
+            height={260}
+            className="rounded-full border-blue-600 object-cover"
+          />
+        </div> */}
       </div>
     </section>
   );
