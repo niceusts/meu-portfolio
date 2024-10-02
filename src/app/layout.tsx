@@ -34,7 +34,9 @@ export default function RootLayout({
           {/* Header */}
           <Navbar /> {/* Usa o componente Navbar */}
           {/* Main Content */}
-          <main className="flex-grow container mx-auto p-4">{children}</main>
+          <main className="flex-grow bg-gray-950 text-white container mx-auto p-4">
+            {children}
+          </main>
           {/* Footer */}
           <footer className="bg-blue-600 text-white text-center p-2">
             <p>© 2024 Niceu Biriba. Todos os direitos reservados.</p>
