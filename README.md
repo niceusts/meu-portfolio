@@ -1,43 +1,46 @@
-<<<<<<< HEAD
+# Meu Portfólio
 
-# meu-portfolio
+## 1. O que é o projeto
 
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Este projeto é um portfólio pessoal desenvolvido em **Next.js**. Ele apresenta uma página principal com seções de introdução, habilidades, projetos e contato. O objetivo do projeto é fornecer uma visão geral sobre minhas habilidades e projetos, além de permitir que visitantes entrem em contato diretamente via WhatsApp ou email. O portfólio também exibe projetos hospedados no GitHub com títulos, descrições, linguagens utilizadas e links para acesso direto ao repositório.
 
-## Getting Started
+## 2. Como rodar o projeto
 
-First, run the development server:
+### Pré-requisitos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js instalado (versão 14 ou superior)
+- Git instalado
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Passo a passo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/niceusts/meu-portfolio.git
+2. Entre na pasta do projeto
+    ```bash
+    cd meu-portfolio
+3. Instale as dependências
+    ```bash
+    npm install
+4. Rode o projeto em ambiente de desenvolvimento
+    ```bash
+    npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 3. O que foi utilizado para fazer esse projeto
+   
+### Principais Tecnologias
+Next.js: Framework React utilizado para a construção da aplicação, tanto no lado do cliente quanto do servidor.
+React: Biblioteca JavaScript usada para a criação de componentes da interface do usuário.
+Tailwind CSS: Framework CSS para a estilização rápida e eficiente do projeto.
+SweetAlert: Biblioteca usada para exibir alertas personalizados na interface.
+AOS (Animate On Scroll): Para animações de scroll em diferentes seções.
 
-## Learn More
+### Outras Ferramentas
+GitHub API: Integração com a API para listar e exibir meus projetos diretamente da plataforma GitHub.
+Fontes Locais: Utilização de fontes customizadas importadas localmente.
+JavaScript: Linguagem principal do projeto, junto com JSX para o desenvolvimento da interface.
+Markdown: Utilizado na documentação do projeto, como este README.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-> > > > > > > c1dbfca (Initial commit from Create Next App)
+### Recursos Extras
+WhatsApp API: O portfólio permite o envio direto de mensagens via WhatsApp.
+Next.js Router: Utilizado para navegação entre páginas e scroll entre seções específicas.
