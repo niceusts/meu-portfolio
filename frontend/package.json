@@ -27,6 +27,7 @@
     "react-hook-form": "^7.87.0",
     "zod": "^3.23.8"
   },
+  "engines": {"node": "24.x"},
   "devDependencies": {
     "@types/aos": "^3.0.7",
     "@types/node": "^20",
