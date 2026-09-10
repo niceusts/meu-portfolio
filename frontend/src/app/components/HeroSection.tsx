@@ -1,7 +1,10 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Download, MapPin } from 'lucide-react';
+import { fetchSettings } from '@/lib/api';
 
 const metrics = [
   { value: '+4 anos', label: 'Prefeitura de Estância' },
@@ -9,7 +12,17 @@ const metrics = [
   { value: 'SaaS', label: 'Multi-tenant + RBAC' },
 ];
 
+const DEFAULT_PHOTO = '/perfil.JPG';
+
 export default function HeroSection() {
+  const [photo, setPhoto] = useState(DEFAULT_PHOTO);
+
+  useEffect(() => {
+    fetchSettings().then((s) => {
+      if (s.hero_photo_url) setPhoto(s.hero_photo_url);
+    });
+  }, []);
+
   return (
     <section className="relative overflow-hidden pt-14" data-aos="fade-up">
       <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
@@ -81,7 +94,7 @@ export default function HeroSection() {
           <div className="glass relative overflow-hidden p-2.5">
             <div className="relative overflow-hidden rounded-2xl">
               <Image
-                src="/perfil.JPG"
+                src={photo}
                 alt="Foto de Niceu Santos Biriba Oliveira"
                 width={640}
                 height={760}

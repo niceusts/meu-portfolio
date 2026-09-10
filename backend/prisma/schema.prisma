@@ -45,6 +45,12 @@ model Experience {
   order     Int       @default(0)
 }
 
+model SiteSetting {
+  key       String   @id
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}
+
 model Message {
   id        Int      @id @default(autoincrement())
   name      String

@@ -8,11 +8,13 @@ import {
   Inbox,
   LayoutDashboard,
   LogOut,
+  UserRound,
   Zap,
 } from 'lucide-react';
 
 const nav = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/admin/perfil', label: 'Foto de perfil', icon: UserRound },
   { href: '/admin/projetos', label: 'Projetos', icon: FolderKanban },
   { href: '/admin/skills', label: 'Skills', icon: Zap },
   { href: '/admin/experiencias', label: 'Experiências', icon: Briefcase },

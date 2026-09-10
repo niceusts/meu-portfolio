@@ -51,6 +51,14 @@ export const updateExperience = (id: number, data: any) =>
 export const deleteExperience = (id: number) =>
   adminApi.delete(`/api/admin/experiences/${id}`);
 
+// ── Configurações do site ─────────────────────────────────────────────────────
+export const getSettings = () =>
+  adminApi.get('/api/admin/settings').then((r) => r.data.settings);
+export const updateSetting = (key: string, value: string) =>
+  adminApi
+    .put(`/api/admin/settings/${key}`, { value })
+    .then((r) => r.data.setting);
+
 // ── Mensagens ─────────────────────────────────────────────────────────────────
 export const getMessages = () =>
   adminApi.get('/api/admin/messages').then((r) => r.data.messages);

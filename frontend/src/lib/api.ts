@@ -102,6 +102,17 @@ export async function fetchSkills(): Promise<SkillItem[]> {
   }
 }
 
+export async function fetchSettings(): Promise<Record<string, string>> {
+  try {
+    const { data } = await api.get<{ settings: Record<string, string> }>(
+      '/api/settings',
+    );
+    return data.settings ?? {};
+  } catch {
+    return {};
+  }
+}
+
 export async function fetchExperiences(): Promise<ExperienceItem[]> {
   try {
     const { data } = await api.get<{ experiences: ExperienceItem[] }>(

@@ -46,4 +46,18 @@ export async function contentRoutes(app: FastifyInstance) {
       return reply.send({ experiences: [], fallback: true });
     }
   });
+
+  // Configurações públicas do site (foto do hero etc.)
+  app.get('/settings', async (_req, reply) => {
+    try {
+      const rows = await prisma.siteSetting.findMany();
+      const settings = Object.fromEntries(rows.map((r) => [r.key, r.value]));
+      return reply
+        .header('Cache-Control', 'public, max-age=300')
+        .send({ settings });
+    } catch (e) {
+      app.log.error(e);
+      return reply.send({ settings: {}, fallback: true });
+    }
+  });
 }

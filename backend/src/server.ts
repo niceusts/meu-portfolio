@@ -27,6 +27,7 @@ app.get('/', async () => ({
     projects: '/api/projects',
     skills: '/api/skills',
     experiences: '/api/experiences',
+    settings: '/api/settings',
     contact: 'POST /api/contact',
   },
 }));

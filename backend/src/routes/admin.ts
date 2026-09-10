@@ -133,6 +133,28 @@ export async function adminRoutes(app: FastifyInstance) {
     return reply.status(204).send();
   });
 
+  // ── CONFIGURAÇÕES DO SITE ──────────────────────────────────────────────
+  app.get('/admin/settings', async (req, reply) => {
+    requireAdmin(req, secret);
+    const rows = await prisma.siteSetting.findMany({ orderBy: { key: 'asc' } });
+    return reply.send({ settings: rows });
+  });
+
+  app.put('/admin/settings/:key', async (req, reply) => {
+    requireAdmin(req, secret);
+    const { key } = req.params as { key: string };
+    const { value } = (req.body ?? {}) as { value?: string };
+    if (typeof value !== 'string' || value.length === 0 || value.length > 2000) {
+      return reply.status(400).send({ error: 'Valor inválido (1–2000 caracteres).' });
+    }
+    const setting = await prisma.siteSetting.upsert({
+      where: { key },
+      update: { value },
+      create: { key, value },
+    });
+    return reply.send({ setting });
+  });
+
   // ── MENSAGENS ─────────────────────────────────────────────────────────────
   app.get("/admin/messages", async (req, reply) => {
     requireAdmin(req, secret);

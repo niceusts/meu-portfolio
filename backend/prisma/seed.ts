@@ -174,7 +174,22 @@ async function main() {
   await prisma.experience.deleteMany();
   await prisma.experience.createMany({ data: experiences });
 
-  console.log('Seed OK: projects, skills, experiences');
+  // Configurações do site (foto do hero etc.) — upsert p/ não apagar valor gerenciado
+  await prisma.siteSetting.upsert({
+    where: { key: 'hero_photo_url' },
+    update: {},
+    create: { key: 'hero_photo_url', value: '/perfil.JPG' },
+  });
+  await prisma.siteSetting.upsert({
+    where: { key: 'hero_photo_alt' },
+    update: {},
+    create: {
+      key: 'hero_photo_alt',
+      value: 'Foto de Niceu Santos Biriba Oliveira',
+    },
+  });
+
+  console.log('Seed OK: projects, skills, experiences, siteSettings');
 }
 
 main()
