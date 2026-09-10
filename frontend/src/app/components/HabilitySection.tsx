@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, BadgeCheck } from 'lucide-react';
-import { skills } from '../../../data/skills';
+import { skills } from '../../data/skills';
 import { SectionHeading } from './SectionHeading';
 
 export default function HabilitySection() {

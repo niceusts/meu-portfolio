@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Github, Star } from 'lucide-react';
-import { githubProjects } from '../../../data/githubProjects';
+import { githubProjects } from '../../data/githubProjects';
 import { SectionHeading, Tags } from './SectionHeading';
 
 export default function GitHubProjetos() {

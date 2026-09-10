@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { projects as initialProjects } from '../../../data/projetos';
+import { projects as initialProjects } from '../../data/projetos';
 import { fetchProjects, ProjectItem } from '@/lib/api';
 import { SectionHeading, Tags } from './SectionHeading';
 

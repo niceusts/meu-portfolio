@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['via.placeholder.com'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'via.placeholder.com' },
+      // Azure Blob Storage (upload do admin)
+      { protocol: 'https', hostname: '*.blob.core.windows.net' },
+    ],
   },
 };
 

@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { projects as fallbackProjects } from '../../data/projetos';
+import { projects as fallbackProjects } from '../data/projetos';
 
 export const API_URL =
   (

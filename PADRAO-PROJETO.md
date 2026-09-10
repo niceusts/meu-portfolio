@@ -12,10 +12,16 @@ O projeto adota uma arquitetura em **Monorepo Desacoplado** com separação tota
 meu-portfolio/
 ├── frontend/             # SPA / SSR com Next.js 14 (App Router)
 │   ├── src/
-│   │   ├── app/          # Rotas e páginas (App Router)
-│   │   │   ├── components/  # Componentes reutilizáveis de interface
-│   │   │   ├── pages/       # Rotas adicionais (/curriculo, /projetos, etc.)
-│   │   │   └── globals.css  # Regras globais de estilo e utilitários
+│   │   ├── app/
+│   │   │   ├── layout.tsx       # Layout raiz (fontes, metadata, analytics)
+│   │   │   ├── (site)/          # Route group: site público (URLs inalteradas)
+│   │   │   │   ├── layout.tsx   # Navbar + container max-w-6xl + footer
+│   │   │   │   ├── page.tsx     # Home
+│   │   │   │   └── pages/       # /curriculo, /projetos, /habilidades, /contato
+│   │   │   ├── admin/           # Gerenciador full-size (layout próprio)
+│   │   │   ├── components/      # Componentes reutilizáveis de interface
+│   │   │   └── globals.css      # Design system (glass, botões, inputs)
+│   │   ├── data/         # Fallbacks estáticos (projetos, skills)
 │   │   ├── lib/          # Clientes HTTP (Axios), utilitários e types
 │   │   └── fonts/        # Tipografia local (Geist)
 │   ├── public/           # Ativos estáticos (fotos, logos, PDFs)

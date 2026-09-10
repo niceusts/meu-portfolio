@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import HeroSection from './components/HeroSection';
-import ProjectSection from './components/ProjectSection';
-import HabilitySection from './components/HabilitySection';
-import ContactSection from './components/ContactSection';
-import GitHub from './components/GitHub';
+import HeroSection from '@/app/components/HeroSection';
+import ProjectSection from '@/app/components/ProjectSection';
+import HabilitySection from '@/app/components/HabilitySection';
+import ContactSection from '@/app/components/ContactSection';
+import GitHub from '@/app/components/GitHub';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 

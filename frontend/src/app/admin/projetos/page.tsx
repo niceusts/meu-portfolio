@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { Pencil, Plus, Star, Trash2, X } from 'lucide-react';
 import {
   getProjects,
   createProject,
@@ -21,9 +22,24 @@ const EMPTY: any = {
   tags: [],
 };
 
+const FIELDS: {
+  label: string;
+  key: string;
+  required?: boolean;
+  type?: string;
+}[] = [
+  { label: 'Título', key: 'title', required: true },
+  { label: 'Slug', key: 'slug', required: true },
+  { label: 'Link', key: 'link' },
+  { label: 'Repo URL', key: 'repoUrl' },
+  { label: 'Tags (separadas por vírgula)', key: 'tags' },
+  { label: 'Ordem', key: 'order', type: 'number' },
+];
+
 export default function ProjetosPage() {
   const [projects, setProjects] = useState<any[]>([]);
-  const [editing, setEditing] = useState<any | null>(null);
+  // undefined = modal fechado | null = novo | objeto = editando
+  const [editing, setEditing] = useState<any>(undefined);
   const [form, setForm] = useState<any>(EMPTY);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -31,8 +47,13 @@ export default function ProjetosPage() {
 
   async function load() {
     setLoading(true);
-    setProjects(await getProjects());
-    setLoading(false);
+    try {
+      setProjects(await getProjects());
+    } catch {
+      setProjects([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -46,6 +67,9 @@ export default function ProjetosPage() {
   function openEdit(p: any) {
     setEditing(p);
     setForm({ ...p, tags: p.tags?.join(', ') ?? '' });
+  }
+  function closeModal() {
+    setEditing(undefined);
   }
 
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -79,7 +103,7 @@ export default function ProjetosPage() {
     try {
       if (editing) await updateProject(editing.id, data);
       else await createProject(data);
-      setEditing(undefined as any);
+      closeModal();
       setForm(EMPTY);
       await load();
     } catch (err: any) {
@@ -99,195 +123,239 @@ export default function ProjetosPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">🗂️ Projetos</h1>
-        <button
-          onClick={openNew}
-          className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition"
-        >
-          + Novo projeto
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-bold text-white">Projetos</h1>
+          <p className="mt-1 text-sm text-zinc-500">
+            {projects.length} {projects.length === 1 ? 'item' : 'itens'} ·
+            clique em editar para alterar ou crie um novo
+          </p>
+        </div>
+        <button onClick={openNew} className="btn-primary">
+          <Plus size={16} />
+          Novo projeto
         </button>
       </div>
 
-      {/* Modal / Form */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+          onClick={closeModal}
+        >
           <form
             onSubmit={handleSave}
-            className="bg-gray-900 rounded-2xl p-6 w-full max-w-lg flex flex-col gap-3 max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+            className="glass max-h-[90vh] w-full max-w-lg overflow-y-auto p-6"
           >
-            <h2 className="text-xl font-bold">
-              {editing ? 'Editar Projeto' : 'Novo Projeto'}
-            </h2>
-
-            {[
-              { label: 'Título', key: 'title', required: true },
-              { label: 'Slug', key: 'slug', required: true },
-              { label: 'Link', key: 'link' },
-              { label: 'Repo URL', key: 'repoUrl' },
-              { label: 'Tags (separadas por vírgula)', key: 'tags' },
-              { label: 'Ordem', key: 'order', type: 'number' },
-            ].map(({ label, key, required, type }) => (
-              <label key={key} className="flex flex-col gap-1 text-sm">
-                <span className="text-gray-400">{label}</span>
-                <input
-                  type={type ?? 'text'}
-                  required={required}
-                  value={form[key] ?? ''}
-                  onChange={(e) =>
-                    setForm((f: any) => ({ ...f, [key]: e.target.value }))
-                  }
-                  className="bg-gray-800 rounded-lg px-3 py-2 text-white outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </label>
-            ))}
-
-            <label className="flex flex-col gap-1 text-sm">
-              <span className="text-gray-400">Descrição</span>
-              <textarea
-                required
-                rows={3}
-                value={form.description ?? ''}
-                onChange={(e) =>
-                  setForm((f: any) => ({ ...f, description: e.target.value }))
-                }
-                className="bg-gray-800 rounded-lg px-3 py-2 text-white outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-              />
-            </label>
-
-            <label className="flex flex-col gap-1 text-sm">
-              <span className="text-gray-400">Imagem</span>
-              {form.imageUrl && (
-                <img
-                  src={form.imageUrl}
-                  alt="preview"
-                  className="h-20 object-cover rounded-lg"
-                />
-              )}
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="text-gray-400"
-              />
-              {uploading && (
-                <span className="text-blue-400 text-xs">Enviando...</span>
-              )}
-              <input
-                placeholder="Ou cole a URL da imagem"
-                value={form.imageUrl ?? ''}
-                onChange={(e) =>
-                  setForm((f: any) => ({ ...f, imageUrl: e.target.value }))
-                }
-                className="bg-gray-800 rounded-lg px-3 py-2 text-white outline-none focus:ring-2 focus:ring-blue-500 mt-1"
-              />
-            </label>
-
-            <div className="flex gap-4">
-              <label className="flex items-center gap-2 text-sm text-gray-400 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={form.published}
-                  onChange={(e) =>
-                    setForm((f: any) => ({ ...f, published: e.target.checked }))
-                  }
-                />
-                Publicado
-              </label>
-              <label className="flex items-center gap-2 text-sm text-gray-400 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={form.featured}
-                  onChange={(e) =>
-                    setForm((f: any) => ({ ...f, featured: e.target.checked }))
-                  }
-                />
-                Destaque
-              </label>
-            </div>
-
-            <div className="flex gap-3 mt-2">
-              <button
-                type="submit"
-                disabled={saving}
-                className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-medium disabled:opacity-50 transition flex-1"
-              >
-                {saving ? 'Salvando...' : 'Salvar'}
-              </button>
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-lg font-bold text-white">
+                {editing ? 'Editar projeto' : 'Novo projeto'}
+              </h2>
               <button
                 type="button"
-                onClick={() => setEditing(undefined as any)}
-                className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-sm transition"
+                onClick={closeModal}
+                aria-label="Fechar"
+                className="rounded-lg border border-zinc-800 p-1.5 text-zinc-400 hover:text-white"
               >
-                Cancelar
+                <X size={16} />
               </button>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              {FIELDS.map(({ label, key, required, type }) => (
+                <label key={key} className="flex flex-col gap-1.5 text-sm">
+                  <span className="text-xs font-semibold text-zinc-300">
+                    {label}
+                  </span>
+                  <input
+                    type={type ?? 'text'}
+                    required={required}
+                    value={form[key] ?? ''}
+                    onChange={(e) =>
+                      setForm((f: any) => ({ ...f, [key]: e.target.value }))
+                    }
+                    className="input-modern"
+                  />
+                </label>
+              ))}
+
+              <label className="flex flex-col gap-1.5 text-sm">
+                <span className="text-xs font-semibold text-zinc-300">
+                  Descrição
+                </span>
+                <textarea
+                  required
+                  rows={3}
+                  value={form.description ?? ''}
+                  onChange={(e) =>
+                    setForm((f: any) => ({
+                      ...f,
+                      description: e.target.value,
+                    }))
+                  }
+                  className="input-modern resize-none"
+                />
+              </label>
+
+              <div className="flex flex-col gap-1.5 text-sm">
+                <span className="text-xs font-semibold text-zinc-300">
+                  Imagem
+                </span>
+                {form.imageUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={form.imageUrl}
+                    alt="preview"
+                    className="h-24 w-full rounded-xl border border-zinc-800 object-cover"
+                  />
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="text-xs text-zinc-400 file:mr-3 file:rounded-lg file:border file:border-zinc-700 file:bg-zinc-800 file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-zinc-200"
+                />
+                {uploading && (
+                  <span className="text-xs text-blue-400">Enviando...</span>
+                )}
+                <input
+                  placeholder="Ou cole a URL da imagem"
+                  value={form.imageUrl ?? ''}
+                  onChange={(e) =>
+                    setForm((f: any) => ({ ...f, imageUrl: e.target.value }))
+                  }
+                  className="input-modern"
+                />
+              </div>
+
+              <div className="flex gap-5">
+                <label className="flex cursor-pointer items-center gap-2 text-sm text-zinc-300">
+                  <input
+                    type="checkbox"
+                    checked={!!form.published}
+                    onChange={(e) =>
+                      setForm((f: any) => ({
+                        ...f,
+                        published: e.target.checked,
+                      }))
+                    }
+                    className="h-4 w-4 accent-blue-600"
+                  />
+                  Publicado
+                </label>
+                <label className="flex cursor-pointer items-center gap-2 text-sm text-zinc-300">
+                  <input
+                    type="checkbox"
+                    checked={!!form.featured}
+                    onChange={(e) =>
+                      setForm((f: any) => ({
+                        ...f,
+                        featured: e.target.checked,
+                      }))
+                    }
+                    className="h-4 w-4 accent-blue-600"
+                  />
+                  Destaque
+                </label>
+              </div>
+
+              <div className="mt-1 flex gap-3">
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="btn-primary flex-1"
+                >
+                  {saving ? 'Salvando...' : 'Salvar'}
+                </button>
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="btn-ghost"
+                >
+                  Cancelar
+                </button>
+              </div>
             </div>
           </form>
         </div>
       )}
 
-      {/* Table */}
       {loading ? (
-        <p className="text-gray-400">Carregando...</p>
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="glass h-40 animate-pulse" />
+          ))}
+        </div>
+      ) : projects.length === 0 ? (
+        <div className="glass p-10 text-center">
+          <p className="font-medium text-zinc-300">
+            Nenhum projeto cadastrado.
+          </p>
+          <button onClick={openNew} className="btn-primary mx-auto mt-4">
+            <Plus size={16} />
+            Criar o primeiro
+          </button>
+        </div>
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {projects.map((p) => (
-            <div
-              key={p.id}
-              className="bg-gray-900 rounded-xl p-4 flex items-center gap-4"
-            >
-              {p.imageUrl && (
+            <div key={p.id} className="glass glass-hover flex gap-3 p-4">
+              {p.imageUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={p.imageUrl}
                   alt={p.title}
-                  className="w-16 h-16 object-cover rounded-lg shrink-0"
+                  className="h-16 w-16 shrink-0 rounded-xl border border-zinc-800 object-cover"
                 />
+              ) : (
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl border border-dashed border-zinc-700 text-xs text-zinc-600">
+                  sem img
+                </div>
               )}
-              <div className="flex-1 min-w-0">
-                <div className="font-semibold">{p.title}</div>
-                <div className="text-gray-400 text-sm truncate">
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-sm font-bold text-white">
+                  {p.title}
+                </div>
+                <div className="truncate text-xs text-zinc-500">
                   {p.description}
                 </div>
-                <div className="flex gap-2 mt-1 flex-wrap">
-                  {p.tags?.map((t: string) => (
-                    <span
-                      key={t}
-                      className="bg-blue-900/50 text-blue-300 text-xs px-2 py-0.5 rounded-full"
-                    >
+                <div className="mt-1.5 flex flex-wrap gap-1">
+                  {p.tags?.slice(0, 3).map((t: string) => (
+                    <span key={t} className="tag !px-2 !py-0.5 !text-[10px]">
                       {t}
                     </span>
                   ))}
                   {p.featured && (
-                    <span className="bg-yellow-900/50 text-yellow-300 text-xs px-2 py-0.5 rounded-full">
-                      ⭐ Destaque
+                    <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/25 bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
+                      <Star size={10} />
+                      Destaque
                     </span>
                   )}
                   {!p.published && (
-                    <span className="bg-gray-700 text-gray-400 text-xs px-2 py-0.5 rounded-full">
+                    <span className="rounded-full border border-zinc-700 bg-zinc-800 px-2 py-0.5 text-[10px] font-semibold text-zinc-400">
                       Rascunho
                     </span>
                   )}
                 </div>
               </div>
-              <div className="flex gap-2 shrink-0">
+              <div className="flex shrink-0 flex-col gap-1.5">
                 <button
                   onClick={() => openEdit(p)}
-                  className="bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-sm transition"
+                  aria-label="Editar"
+                  className="rounded-lg border border-zinc-800 p-2 text-zinc-400 transition hover:border-zinc-600 hover:text-white"
                 >
-                  ✏️
+                  <Pencil size={14} />
                 </button>
                 <button
                   onClick={() => handleDelete(p.id)}
-                  className="bg-red-900/50 hover:bg-red-800 px-3 py-1.5 rounded-lg text-sm transition"
+                  aria-label="Excluir"
+                  className="rounded-lg border border-zinc-800 p-2 text-zinc-400 transition hover:border-red-500/50 hover:text-red-400"
                 >
-                  🗑️
+                  <Trash2 size={14} />
                 </button>
               </div>
             </div>
           ))}
-          {projects.length === 0 && (
-            <p className="text-gray-500">Nenhum projeto cadastrado.</p>
-          )}
         </div>
       )}
     </div>
