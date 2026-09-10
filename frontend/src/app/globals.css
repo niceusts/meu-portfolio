@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background:
+    radial-gradient(
+      1200px 600px at 80% -10%,
+      rgba(59, 130, 246, 0.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 500px at 10% 0%,
+      rgba(139, 92, 246, 0.1),
+      transparent 60%
+    ),
+    #09090b;
+  font-family:
+    var(--font-geist-sans),
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.35);
+  color: #fff;
+}
+
+@layer components {
+  .glass {
+    @apply rounded-2xl border border-zinc-800/80 bg-zinc-900/50 backdrop-blur-md;
+  }
+  .glass-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:shadow-[0_20px_60px_-20px_rgba(59,130,246,0.35)];
+  }
+  .section-title {
+    @apply text-center text-3xl font-bold tracking-tight text-white md:text-4xl;
+  }
+  .section-subtitle {
+    @apply mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-zinc-400 md:text-base;
+  }
+  .tag {
+    @apply rounded-full border border-zinc-700/80 bg-zinc-800/70 px-2.5 py-1 text-[11px] font-medium text-zinc-300;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-blue-500 hover:shadow-[0_10px_40px_-10px_rgba(59,130,246,0.7)] active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-900/60 px-6 py-2.5 text-sm font-semibold text-zinc-200 transition-all hover:border-zinc-500 hover:text-white active:scale-[0.98];
+  }
+  .input-modern {
+    @apply w-full rounded-xl border border-zinc-700/80 bg-zinc-900/70 px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-400 via-indigo-300 to-violet-400 bg-clip-text text-transparent;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      black 40%,
+      transparent 100%
+    );
+  }
+}
