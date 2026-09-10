@@ -14,6 +14,19 @@ await app.register(cors, {
 
 await app.register(rateLimit, { max: 100, timeWindow: '1 minute' });
 
+app.get('/', async () => ({
+  name: 'Portfolio API — Niceu Biriba',
+  version: '1.0.0',
+  status: 'online',
+  endpoints: {
+    health: '/health',
+    projects: '/api/projects',
+    skills: '/api/skills',
+    experiences: '/api/experiences',
+    contact: 'POST /api/contact',
+  },
+}));
+
 app.get('/health', async () => ({ ok: true, time: new Date().toISOString() }));
 
 await app.register(contactRoutes, { prefix: '/api' });
