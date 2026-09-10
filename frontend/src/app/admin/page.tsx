@@ -14,11 +14,14 @@ export default function AdminLoginPage() {
     setError('');
 
     try {
-      const apiUrl = (
-        process.env.NEXT_PUBLIC_API_URL ||
-        process.env.NEXT_PRIVATE_API_URL ||
-        'http://localhost:3333'
-      ).replace(/\/$/, '');
+      const apiUrl = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '');
+      if (!apiUrl) {
+        setError(
+          'NEXT_PUBLIC_API_URL não configurada na Vercel. Configure e faça redeploy.',
+        );
+        setLoading(false);
+        return;
+      }
       const res = await fetch(`${apiUrl}/api/admin/projects`, {
         headers: { Authorization: `Bearer ${secret}` },
       });
@@ -28,11 +31,18 @@ export default function AdminLoginPage() {
         setLoading(false);
         return;
       }
+      if (!res.ok) {
+        setError(`API respondeu com erro ${res.status}. Tente de novo.`);
+        setLoading(false);
+        return;
+      }
 
       localStorage.setItem('admin_secret', secret);
       router.push('/admin/dashboard');
     } catch {
-      setError('Erro ao conectar com a API.');
+      setError(
+        'Erro ao conectar com a API. Verifique NEXT_PUBLIC_API_URL e o CORS do backend.',
+      );
       setLoading(false);
     }
   }

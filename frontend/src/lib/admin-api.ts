@@ -1,16 +1,15 @@
 import axios from 'axios';
 
+// NEXT_PUBLIC_* é a única variável disponível no browser.
+// NEXT_PRIVATE_* nunca chega ao client — não usar aqui.
 const API_URL =
-  (
-    process.env.NEXT_PUBLIC_API_URL ||
-    process.env.NEXT_PRIVATE_API_URL ||
-    ''
-  ).replace(/\/$/, '') || 'http://localhost:3333';
+  (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '') ||
+  'http://localhost:3333';
 
 function getSecret() {
   return typeof window !== 'undefined'
     ? (localStorage.getItem('admin_secret') ?? '')
-    : (process.env.NEXT_PRIVATE_ADMIN_SECRET ?? '');
+    : '';
 }
 
 const adminApi = axios.create({ baseURL: API_URL });
