@@ -2,8 +2,11 @@ import axios, { AxiosError } from 'axios';
 import { projects as fallbackProjects } from '../../data/projetos';
 
 export const API_URL =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') ??
-  'http://localhost:3333';
+  (
+    process.env.NEXT_PUBLIC_API_URL ||
+    process.env.NEXT_PRIVATE_API_URL ||
+    ''
+  ).replace(/\/$/, '') || 'http://localhost:3333';
 
 export const api = axios.create({
   baseURL: API_URL,
